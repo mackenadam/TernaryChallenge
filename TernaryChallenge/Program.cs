@@ -19,9 +19,27 @@ namespace TernaryChallenge
 {
     class Program
     {
+        static int temperature;
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            TakeUserInput();
+            Console.WriteLine(temperature <= 15 ? "It is too cold here." : temperature > 28 ? "It is hot here." : "It is ok.");
+        }
+
+        public static void TakeUserInput()
+        {
+            Console.WriteLine("Please enter the temperature:");
+            string userInput = Console.ReadLine();
+            bool success = int.TryParse(userInput, out temperature);
+            if (success)
+            {
+                Console.WriteLine("The temperature is {0} degrees.", temperature);
+            }
+            else
+            {
+                Console.WriteLine("Please enter a valid temperature.");
+                TakeUserInput();
+            }
         }
     }
 }
